@@ -57,6 +57,7 @@ const main = (api, session) => {
     if (loadAllMediaFilesBtn) loadAllMediaFilesBtn.disabled = false;
     
     // Helper functions
+    // >>Generate a random unique identifier to which mediaFile records can be added
     const generateSolutionId = () => {
         function s4() {
             return Math.floor(Math.random() * 0x10000).toString(16).padStart(4, '0');
@@ -118,6 +119,8 @@ const main = (api, session) => {
     };
     
     // API Operations
+
+    //>> Create a mediaFile record
     const addMediaFile = async (name) => {
         return new Promise((resolve, reject) => {
             const currentSolutionId = generateSolutionId();
@@ -153,7 +156,8 @@ const main = (api, session) => {
             });
         });
     };
-    
+
+    //>> upload media to an existing mediaFile record
     const uploadMediaFile = async (targetMediaFileId) => {
         const inputFile = fileInput.files[0];
         
@@ -217,7 +221,8 @@ const main = (api, session) => {
             alert(`Error during file upload: ${error.message || error}`);
         }
     };
-    
+
+    //>> retrieve mediaFile record
     const getMediaFile = async (idToGet) => {
         const params = { typeName: "MediaFile" };
         
@@ -249,7 +254,8 @@ const main = (api, session) => {
                 });
         });
     };
-    
+
+    //>> update mediaFile record with new properties
     const setMediaFile = async (idToSet, updateEntity) => {
         if (!idToSet) {
             alert("Please provide a MediaFile ID to update.");
@@ -278,7 +284,8 @@ const main = (api, session) => {
             });
         });
     };
-    
+
+    //>> retrieve the media blob associated with the mediaFile record
     const fetchMediaFileBlobForPreviewOrDownload = async (mediaFileId) => {
         if (!database || !sessionId || !userName || !requestURL) {
             logResult("Session information is not available for file operations.");
@@ -312,6 +319,7 @@ const main = (api, session) => {
             return null;
         }
     };
+
     
     const downloadMediaFile = async (idToDownload) => {
         if (!idToDownload) {
@@ -346,7 +354,8 @@ const main = (api, session) => {
             alert(`Failed to fetch file data for download: ${idToDownload}. Check logs.`);
         }
     };
-    
+
+    //>> remove mediaFile record 
     const removeMediaFile = async (idToRemove) => {
         if (!idToRemove) {
             alert("Please provide a MediaFile ID to remove.");
