@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MediaFile Operations Add-In</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js"></script>
+    <script src="init.js"></script>
+    <script src="mediafile-operations.js"></script>
+</head>
+<body>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Geotab Login Credentials</h2>
+            <form id="loginForm">
+                <label for="database">Database:</label>
+                <input type="text" id="database" name="database" required>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="path">Path (Server URL):</label>
+                <input type="text" id="path" name="path" value="my.geotab.com" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id='mediafile-ops-container'>
+        <h1>🎬MediaFile Operations ⚙️</h1>
+        <div class="main-content">
+            <div class="section-container">
+                <h2>📁 Create & Upload MediaFile</h2>
+                <label for="fileInput">Select File:</label>
+                <input type="file" id="fileInput" accept="image/*,video/*,application/pdf,.zip,.txt">
+                <button id='createMediaFileBtn'>1. Create MediaFile Entry</button>
+                <button id="uploadMediaFileBtn">2. Upload Selected File</button>
+            </div>
+            
+            <hr>
+            
+            <div class="section-container">
+                <h2>🔍 Get MediaFile</h2>
+                <button id='loadAllMediaFilesBtn'>Load All MediaFiles into Dropdown & Scroller</button>
+                <label for="mediaFileSelectDropdown">Select MediaFile (for forms below):</label>
+                <select id="mediaFileSelectDropdown"></select>
+                <button id='getSpecificMediaFileBtn'>Get Selected MediaFile Details (Log)</button>
+                <label for="getMediaFileByIdDirectlyInput">Or Get by ID directly (Log & Select):</label>
+                <input type="text" id="getMediaFileByIdDirectlyInput" placeholder="Enter ID to get directly">
+                <button id='getMediaFileByIdDirectlyBtn'>Get by ID</button>
+            </div>
+            
+            <hr>
+            
+            <div class="media-scroller-outer-container">
+                <h2>🖼️ Existing Media (Scrollable Previews)</h2>
+                <div class="media-scroller-navigation">
+                    <button id="scrollPrevBtn">&lt; Prev</button>
+                    <div id="mediaScrollerContent" class="media-scroller-content">
+                        <div style="padding:10px; color:#777; text-align: center; width: 100%;">Click "Load All..." to see media.</div>
+                    </div>
+                    <button id="scrollNextBtn">Next &gt;</button>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="section-container">
+                <h2>✍️ Set/Update MediaFile</h2>
+                <label for="setMediaFileIdInput">MediaFile ID (from dropdown, scroller, or enter manually):</label>
+                <input type="text" id="setMediaFileIdInput" placeholder="e.g., aXXXXXXXXXXXX">
+                <label for="setMediaFileNameInput">New Name:</label>
+                <input type="text" id="setMediaFileNameInput" placeholder="NewFileName.jpg">
+                <label for="setMediaTypeInput">New Media Type (e.g., image, video, unknown):</label>
+                <input type="text" id="setMediaTypeInput" placeholder="image">
+                <button id='setMediaFileBtn'>Set MediaFile</button>
+            </div>
+            
+            <hr>
+            
+            <div class="section-container">
+                <h2>📦 Download MediaFile</h2>
+                <label for="downloadMediaFileIdInput">MediaFile ID (from dropdown, scroller, or enter manually):</label>
+                <input type="text" id="downloadMediaFileIdInput" placeholder="e.g., aXXXXXXXXXXXX">
+                <button id='downloadMediaFileBtn'>Download MediaFile</button>
+            </div>
+            
+            <hr>
+            
+            <div class="section-container">
+                <h2>🗑️ Remove MediaFile</h2>
+                <label for="removeMediaFileIdInput">MediaFile ID (from dropdown, scroller, or enter manually):</label>
+                <input type="text" id="removeMediaFileIdInput" placeholder="e.g., aXXXXXXXXXXXX">
+                <button id='removeMediaFileBtn'>Remove MediaFile</button>
+            </div>
+        </div>
+        
+        <div class="logs-container">
+            <h2>📜 Logs / Results</h2>
+            <pre id="resultsLog"></pre>
+        </div>
+    </div>
+</body>
+</html>
