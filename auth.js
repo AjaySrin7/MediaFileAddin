@@ -1,11 +1,6 @@
+// Code to be run when the application is run as standalone html
 const outsideMyG = () => {
 
-    /**
-     * Waits for specified elements to be available in the DOM.
-     * @param {string[]} elementIds - An array of element IDs to wait for.
-     * @param {number} [timeout=5000] - The maximum time to wait in milliseconds.
-     * @returns {Promise<{[id: string]: HTMLElement}>} A promise that resolves with an object of the found elements.
-     */
     const waitForElements = (elementIds, timeout = 5000) => {
         return new Promise((resolve, reject) => {
             const poller = setInterval(() => {
@@ -31,9 +26,7 @@ const outsideMyG = () => {
         });
     };
 
-    /**
-     * Initializes the login process.
-     */
+ // show login form to get credentials
     const initialize = async () => {
         try {
             const { loginModal, loginForm } = await waitForElements(['loginModal', 'loginForm']);
@@ -45,7 +38,7 @@ const outsideMyG = () => {
         }
     };
 
-    // --- The rest of your functions remain unchanged ---
+   
 
     async function handleFormSubmit(event) {
         event.preventDefault();
@@ -90,6 +83,7 @@ const outsideMyG = () => {
         }
     }
 
+    // load mg-api.js MyGeotab API JS wrapper
     function loadGeotabApi({ database, username, password, path }) {
         return new Promise((resolve, reject) => {
             const script = document.createElement('script');
@@ -148,6 +142,6 @@ const outsideMyG = () => {
             (result && result.message && !result.credentials);
     }
 
-    // Start the initialization process
+    // Start the login initialization process
     initialize();
 };
