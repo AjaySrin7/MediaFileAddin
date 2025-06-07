@@ -1,3 +1,5 @@
+// check if the code is run inside mygeotab to see if addin registration needs to be done
+
 var sessionInfo = null;
     
     if (window.geotab) {
